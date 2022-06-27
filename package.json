@@ -1,0 +1,34 @@
+{
+  "name": "reactive-state-hooks",
+  "version": "0.0.1",
+  "description": "響應式的useState，透過降低rerender範圍來優化React在update時的效能",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OscarChang0514/reactive-state-hooks.git"
+  },
+  "keywords": [
+    "reactive-state-hooks",
+    "useState",
+    "reactive-state",
+    "react performance",
+    "use-Reactive-State",
+    "use-Reactive-List-State",
+    "useReactiveState",
+    "useReactiveListState"
+  ],
+  "author": "OscarChang0514 <y520945811@gmail.com> (https://github.com/OscarChang0514)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OscarChang0514/reactive-state-hooks/issues"
+  },
+  "homepage": "https://github.com/OscarChang0514/reactive-state-hooks#readme",
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "react": "^18.2.0",
+    "rxjs": "^7.5.5"
+  }
+}
