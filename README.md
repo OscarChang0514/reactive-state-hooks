@@ -1,0 +1,2 @@
+# reactive-state-hooks
+響應式的useState，透過降低rerender範圍來優化React在update時的效能
