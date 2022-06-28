@@ -34,15 +34,12 @@ export const useReactiveListState = (defaultList) => {
         },
         render: (itemRender) => {
             return listStore.current.map((store, index) => (
-                <ObserverComponent store={store}>
-                    {value => itemRender(value, index)}
-                </ObserverComponent>
+                React.createElement(ObserverComponent, { store: store }, value => itemRender(value, index))
             ));
         },
         renderWithIndex: (index, itemRender) => {
-            return index >= 0 && <ObserverComponent store={listStore.current[index]}>
-                {value => itemRender(value)}
-            </ObserverComponent>;
+            return index >= 0 &&
+                React.createElement(ObserverComponent, { store: listStore.current[index] }, value => itemRender(value))
         },
     };
 };

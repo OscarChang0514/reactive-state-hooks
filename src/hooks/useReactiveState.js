@@ -23,16 +23,20 @@ export const useReactiveState = defaultValue => {
             storeRef.current.update(value);
         },
         updateFieldValue: (key, value) => {
-            updateFieldValue(key, value)
-            storeRef.current.update({ ...storeRef.current.value, [key]: value })
+            if (!(originState.getValues()[0]?.key === 'isNotObj')) {
+                updateFieldValue(key, value)
+                storeRef.current.update({ ...storeRef.current.value, [key]: value });
+            }
         },
         updateFieldsValue: (object) => {
-            Object.keys(object).forEach(key => updateFieldValue(key, object[key]));
-            storeRef.current.update({ ...storeRef.current.value, ...object })
+            if (!(originState.getValues()[0]?.key === 'isNotObj')) {
+                Object.keys(object).forEach(key => updateFieldValue(key, object[key]));
+                storeRef.current.update({ ...storeRef.current.value, ...object });
+            }
         },
         renderField: (key, itemRender) => {
             let index = originState.getValues().findIndex(item => item.key === key);
-            if (index === -1) {
+            if (index === -1 && !(values[0]?.key === 'isNotObj')) {
                 // 若發現沒有該key則直接建立，且不觸發重繪
                 originState.addItem({ key: key, value: null }, false);
                 index = originState.getValues().length - 1;
@@ -40,14 +44,14 @@ export const useReactiveState = defaultValue => {
             return originState.renderWithIndex(index, (item) => itemRender(item.value));
         },
         render: (itemRender) => {
-            return <ObserverComponent store={storeRef.current}>{itemRender}</ObserverComponent>
+            return React.createElement(ObserverComponent, { store: storeRef.current }, itemRender)
         },
     };
 };
 
 //初始化值用的
 const initValue = (value) => {
-    return isObject(value) ? parseObjectToList(value) : [{ key: 'init', value: value }]
+    return isObject(value) ? parseObjectToList(value) : [{ key: 'isNotObj', value: value }]
 }
 
 //把資料轉成ListState能吃的格式

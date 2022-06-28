@@ -11,7 +11,5 @@ export const ObserverComponent = (props) => {
         store.subject.subscribe(forceUpdate);
     }, [store.subject])
 
-    return (
-        <>{children(store.value)}</>
-    )
+    return children(store.value)
 };
